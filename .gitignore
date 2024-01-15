@@ -1,5 +1,8 @@
 .gitignore_backup
 .env
+env
+.DS_Store
+
 
 # Logs
 logs
