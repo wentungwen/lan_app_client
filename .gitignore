@@ -1,3 +1,6 @@
+.gitignore_backup
+.env
+
 # Logs
 logs
 *.log
