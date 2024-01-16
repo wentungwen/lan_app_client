@@ -210,10 +210,12 @@ export default {
   },
   created() {
     const user_data = JSON.parse(localStorage.getItem("lan_user_data"));
-    this.user_data = {
-      username: user_data.username,
-      email: user_data.email,
-    };
+    if (user_data) {
+      this.user_data = {
+        username: user_data.username,
+        email: user_data.email,
+      };
+    }
   },
 };
 </script>
