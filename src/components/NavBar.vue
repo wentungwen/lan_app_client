@@ -154,6 +154,7 @@ export default {
         axios
           .post(`${process.env.VUE_APP_API_BASE_URL}/login`, this.login_data)
           .then((res) => {
+            console.log("login", res);
             this.set_cookie("token", res.data.token);
             localStorage.setItem(
               "lan_user_data",
@@ -181,19 +182,31 @@ export default {
       }, 2000);
     },
     signup_submit() {
+      console.log(`${process.env.VUE_APP_API_BASE_URL}/signup`);
       axios
         .post(`${process.env.VUE_APP_API_BASE_URL}/signup`, this.signup_data)
         .then((res) => {
-          this.set_cookie("token", res.data.token);
-          localStorage.setItem("username", res.data.username);
-          window.location.reload();
+          console.log("signup", res);
+          if (res.status === 200) {
+            console.log("res", res);
+            this.set_cookie("token", res.data.token);
+            localStorage.setItem(
+              "lan_user_data",
+              JSON.stringify({
+                username: res.data[0].username,
+                email: res.data[0].email,
+                user_id: res.data[0].user_id,
+              })
+            );
+            // window.location.reload();
+          }
         })
-        .catch((err) => {
-          console.log(err);
+        .catch((error) => {
+          console.log(error);
         });
     },
     logout_submit() {
-      localStorage.removeItem("username");
+      localStorage.removeItem("lan_user_data");
       this.delete_cookie("token");
       window.location.reload();
     },
