@@ -198,7 +198,7 @@ export default {
                 user_id: res.data[0].user_id,
               })
             );
-            // window.location.reload();
+            window.location.reload();
           }
         })
         .catch((error) => {
