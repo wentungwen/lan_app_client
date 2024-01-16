@@ -71,22 +71,24 @@ export default {
           Authorization: token,
         },
       };
-      axios
-        .get(`${process.env.VUE_APP_API_BASE_URL}/get-conversations`, config)
-        .then((res) => {
-          if (res.data) {
-            this.conversations = res.data["data"];
-            this.loaded_conversation = this.conversations[0];
-          } else {
+      if (token) {
+        axios
+          .get(`${process.env.VUE_APP_API_BASE_URL}/get-conversations`, config)
+          .then((res) => {
+            if (res.data) {
+              this.conversations = res.data["data"];
+              this.loaded_conversation = this.conversations[0];
+            } else {
+              this.conversations = [];
+            }
+          })
+          .catch(() => {
             this.conversations = [];
-          }
-        })
-        .catch(() => {
-          this.conversations = [];
-        })
-        .finally(() => {
-          this.loading = false;
-        });
+          })
+          .finally(() => {
+            this.loading = false;
+          });
+      }
     },
   },
 };
