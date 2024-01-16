@@ -108,7 +108,6 @@ export default {
           payload
         )
         .then((res) => {
-          console.log("res", res);
           this.generated_data.conversations = res.data;
           this.generated_data.lan_code = this.formData.lan_code;
           this.generated_data.topic = this.formData.topic;

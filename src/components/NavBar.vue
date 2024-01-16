@@ -154,7 +154,6 @@ export default {
         axios
           .post(`${process.env.VUE_APP_API_BASE_URL}/login`, this.login_data)
           .then((res) => {
-            console.log("login", res);
             this.set_cookie("token", res.data.token);
             localStorage.setItem(
               "lan_user_data",
@@ -186,9 +185,7 @@ export default {
       axios
         .post(`${process.env.VUE_APP_API_BASE_URL}/signup`, this.signup_data)
         .then((res) => {
-          console.log("signup", res);
           if (res.status === 200) {
-            console.log("res", res);
             this.set_cookie("token", res.data.token);
             localStorage.setItem(
               "lan_user_data",
@@ -213,7 +210,6 @@ export default {
   },
   created() {
     const user_data = JSON.parse(localStorage.getItem("lan_user_data"));
-    console.log(user_data);
     this.user_data = {
       username: user_data.username,
       email: user_data.email,

@@ -250,7 +250,6 @@ export default {
             .style("cursor", "pointer")
             .style("left", `${event.pageX - width / 2}px`)
             .style("top", `${event.pageY - 100}px`);
-          console.log(event, d);
           tooltip.html(`Label: ${d.label}<br>Value: ${d.value}`);
         })
         .on("mouseout", function () {

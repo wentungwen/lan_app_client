@@ -188,7 +188,6 @@ export default {
   },
   watch: {
     loaded_conversation(new_conversation) {
-      console.log("new_conversation", new_conversation);
       if (new_conversation) {
         this.init_test();
         this.current_conversation = new_conversation;

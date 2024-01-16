@@ -176,7 +176,8 @@
               </div>
               <div
                 v-else-if="
-                  loaded_conversation && loaded_conversation.conversations
+                  loaded_conversation &&
+                  loaded_conversation.conversations.length > 0
                 "
               >
                 <p
@@ -292,7 +293,6 @@ export default {
         lan_code: this.received_data.lan_code,
         topic: this.received_data.topic,
       };
-      console.log(payload);
       axios
         .post(`${process.env.VUE_APP_API_BASE_URL}/generate-five`, payload)
         .then((res) => {
@@ -423,7 +423,6 @@ export default {
         const lan_code = received_data.lan_code;
         const conversations = received_data.conversations;
         const res = await translate_conversations(lan_code, conversations);
-        console.log("res", res);
         this.received_data.translated_conversations = res;
         this.is_translating = !this.is_translating;
       }

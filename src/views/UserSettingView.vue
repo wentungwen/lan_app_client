@@ -212,18 +212,15 @@ export default {
         this.is_changing_password &&
         (n_data.password.trim() === "" || o_data.password.trim() === "")
       ) {
-        console.log("pro");
         this.is_alert_shown = true;
         this.alert_msg = "The password input is empty. Please fill in!";
       }
       // send the data to backend
       else {
         const payload = this.user_input_data;
-        console.log("payload", payload);
         axios
           .post(`${process.env.VUE_APP_API_BASE_URL}/update-user-data`, payload)
           .then((res) => {
-            console.log(res);
             let old_data = this.user_input_data.origin_data;
             old_data.username = res.data.username;
             old_data.email = res.data.email;
@@ -258,7 +255,6 @@ export default {
       this.user_input_data.new_data.username = user_data.username;
       this.user_input_data.new_data.email = user_data.email;
       this.user_input_data.user_id = user_data.user_id;
-      console.log(this.user_input_data);
     }
   },
 };
